@@ -30,9 +30,9 @@ def main():
 
         print("\n--- Base model metrics ---")
         print(f"mAP50-95: {metrics.box.map:.4f}")
-        print(f"   mAP50: {metrics.box.map50:.4f}")
-        print(f" Precision: {metrics.box.precision.mean():.4f}")
-        print(f"    Recall: {metrics.box.recall.mean():.4f}")
+        print(f"mAP50: {metrics.box.map50:.4f}")
+        print(f"Precision: {metrics.box.p.mean():.4f}") 
+        print(f"Recall: {metrics.box.r.mean():.4f}")
         
     except Exception as e:
         print(f"\n[ERROR] An error occurred during training: {e}")
