@@ -6,3 +6,4 @@ images_to_predict/
 predictions/
 *.pt 
 !best.pt
+error_analysis/

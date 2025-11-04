@@ -7,7 +7,7 @@
 #SBATCH -n 8  
 #SBATCH --mem=32G  
 #SBATCH -t 01:00:00 
-#SBATCH --output="yolo_log_%j.out" (%j = task ID)
+#SBATCH --output="yolo_log_%j.out" #(%j = task ID)
 #SBATCH --error="yolo_err_%j.err" 
 
 echo "Task started: $(date)"

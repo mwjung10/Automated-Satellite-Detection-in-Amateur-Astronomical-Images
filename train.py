@@ -6,7 +6,7 @@ def main():
     print(f"Used device: {device}")
 
 
-    model = YOLO('yolov8n.pt')
+    model = YOLO('yolov9t.pt')
 
     print("Starting base training...")
     
@@ -18,7 +18,7 @@ def main():
             optimizer='Adam',          
             imgsz=640,                 
             device=device,
-            name='yolov8n_streaks_baseline' 
+            name='yolov9t_streaks_baseline' 
         )
 
         print("\nTraining completed successfully.")
