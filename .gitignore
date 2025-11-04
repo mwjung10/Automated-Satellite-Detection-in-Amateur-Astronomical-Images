@@ -2,3 +2,4 @@ StreaksYoloDataset/
 runs/
 *.pt
 __pycache__/
+check_labels.py 
