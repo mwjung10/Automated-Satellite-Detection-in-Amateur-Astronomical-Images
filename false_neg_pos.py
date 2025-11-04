@@ -1,3 +1,4 @@
+# This file saves images that produced false negative and false positive errors
 import os
 import shutil
 from ultralytics import YOLO
