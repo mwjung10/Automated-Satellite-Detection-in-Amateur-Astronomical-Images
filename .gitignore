@@ -1,7 +1,8 @@
 StreaksYoloDataset/
 runs/
-*.pt
 __pycache__/
 check_labels.py 
 images_to_predict/
 predictions/
+*.pt 
+!best.pt
