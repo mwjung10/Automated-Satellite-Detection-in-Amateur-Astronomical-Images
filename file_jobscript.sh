@@ -1,14 +1,14 @@
 #!/bin/bash
 #
-#SBATCH -J TreningYOLOFalseNegPos
+#SBATCH -J FileJob
 #SBATCH -p plgrid-gpu-a100
 #SBATCH --gres=gpu:1
 #SBATCH -N 1
 #SBATCH -n 8
 #SBATCH --mem=32G
 #SBATCH -t 01:00:00
-#SBATCH --output="yolo_log_flase_%j.out" #(%j = task ID)
-#SBATCH --error="yolo_err_false_%j.err"
+#SBATCH --output="yolo_log_file_%j.out" #(%j = task ID)
+#SBATCH --error="yolo_err_file_%j.err"
 
 echo "Task started: $(date)"
 cd $SLURM_SUBMIT_DIR
@@ -19,6 +19,6 @@ conda activate PDyplomowa
 
 echo "Environment started. Starts python script..."
 
-python -u false_neg_pos.py
+python -u convert_arw_to_jpg.py
 
 echo "Task finished: $(date)"
