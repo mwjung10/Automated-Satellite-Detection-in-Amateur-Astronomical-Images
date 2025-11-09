@@ -20,7 +20,7 @@ def predict_custom_image():
 
     print(f"Running prediction for: {IMAGE_PATH}")
 
-
+    
     try:
         results = model.predict(
             source=IMAGE_PATH,
