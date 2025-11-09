@@ -16,7 +16,7 @@ def main():
             epochs=30,                 
             batch=16,                  
             optimizer='Adam',          
-            imgsz=640,                 
+            imgsz=320,                 
             device=device,
             name='yolov9t_streaks_baseline' 
         )
