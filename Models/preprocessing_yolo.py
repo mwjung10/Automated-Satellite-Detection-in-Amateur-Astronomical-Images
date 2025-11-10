@@ -100,18 +100,31 @@ def predict_one_image(name):
     processed_image = apply_clahe_pipeline(image_bgr)
     
     print("  Running YOLO prediction...")
-    model.predict(
+    results = model.predict(
         processed_image,
         save=True,
         save_txt=True,
         project=RESULTS_SAVE_DIR, 
-        name='single_image_clahe', 
-        conf=0.5   
+        name=name + '_preprocess_pred',
+        conf=0.1
     )
-    print("  Prediction completed and saved.\n")
+    result = results[0]
+    
+    print("\n--- Prediction finished ---")
+    if len(result.boxes) == 0:
+        print("Model did not find any objects.")
+    else:
+        print(f"Model found {len(result.boxes)} objects!")
+        for box in result.boxes:
+            confidence = box.conf[0]
+            print(f"  - Confidence: {confidence:.2f}")
+    
     print(f"Results (image with boxes) have been saved in the folder '{RESULTS_SAVE_DIR}'.")
 
     
 
 if __name__ == "__main__":
     predict_one_image('DSC02533.jpg')
+    predict_one_image('DSC02545.jpg')
+    predict_one_image('DSC02547.jpg')
+    predict_one_image('DSC01979.jpg')
