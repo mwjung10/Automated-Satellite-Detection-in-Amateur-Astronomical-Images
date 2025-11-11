@@ -8,3 +8,4 @@ predictions/
 !best.pt
 error_analysis/
 yolo*
+ASTAdataset/
