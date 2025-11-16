@@ -3,7 +3,7 @@ import numpy as np
 import os
 import glob
 
-IMAGES_FOLDER = '../images_to_predict' 
+IMAGES_FOLDER = '../all_images_to_predict' 
 RESULTS_FOLDER = 'Houghruns/detect/predict_hough_baseline'
 # ------------------
 

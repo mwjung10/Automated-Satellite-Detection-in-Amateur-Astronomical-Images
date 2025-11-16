@@ -10,6 +10,15 @@ MODEL_PATH = '../best.pt'
 IMAGES_FOLDER = '../images_to_predict' 
 RESULTS_FOLDER = 'prediction_unet_hybrid_FINAL'
 
+def preprocess_image(image):
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    contrast_img = clahe.apply(gray)
+
+    _, thresh_img = cv2.threshold(contrast_img, 100, 255, cv2.THRESH_BINARY)
+    preprocessed_img = cv2.cvtColor(thresh_img, cv2.COLOR_GRAY2BGR)
+    return preprocessed_img
+
 def analyze_mask_with_cv(mask, original_image):
     """
     Analyzes the binary mask using two methods:
@@ -21,6 +30,7 @@ def analyze_mask_with_cv(mask, original_image):
     
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
+    # --- Method 1: findContours (Blob detection) ---
     print(f"  [findContours] Found {len(contours)} potential objects.")
     for cnt in contours:
         # Filter out small objects (noise) that U-Net might have missed
@@ -67,7 +77,10 @@ def main():
 
         # --- STEP 1: U-Net (YOLOv8-Seg) acts as an "AI filter" ---
         # Use a lower confidence threshold to catch even faint streaks
-        results = model.predict(original_image, conf=0.05, verbose=False) 
+        preprocessed_image = preprocess_image(original_image)
+        preprocessed_save_path = os.path.join(RESULTS_FOLDER, f"{os.path.splitext(os.path.basename(img_path))[0]}_PREPROCESSED.png")
+        cv2.imwrite(preprocessed_save_path, preprocessed_image)
+        results = model.predict(preprocessed_image, conf=0.05, verbose=False) 
         
         if results[0].masks is None:
             print("  [U-Net] No objects (masks) found in this image.")
@@ -87,7 +100,7 @@ def main():
                     interpolation=cv2.INTER_NEAREST 
                 )
             final_mask = cv2.bitwise_or(final_mask, mask_binary)
-            
+
         # Save the mask itself (for visualization and debugging)
         mask_save_path = os.path.join(RESULTS_FOLDER, f"{os.path.splitext(os.path.basename(img_path))[0]}_MASK.png")
         cv2.imwrite(mask_save_path, final_mask)

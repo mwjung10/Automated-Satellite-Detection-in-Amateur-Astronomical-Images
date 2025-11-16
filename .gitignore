@@ -18,3 +18,4 @@ split_asta_datset_check.py
 all_images_to_predict/
 
 Models_predict/prediction*
+Models_predict/Houghruns
