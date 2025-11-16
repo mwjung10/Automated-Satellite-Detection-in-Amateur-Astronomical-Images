@@ -13,7 +13,7 @@ def main():
     try:
         results = model.train(
             data='asta.yaml', 
-            epochs=50,      
+            epochs=200,      
             batch=8,        
             optimizer='Adam',
             imgsz=640,

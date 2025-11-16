@@ -14,3 +14,7 @@ ASTA_dataset_split/
 # Directory for verification results
 check_ASTA_split_rqesults/  
 split_asta_datset_check.py  
+
+all_images_to_predict/
+
+Models_predict/prediction*
