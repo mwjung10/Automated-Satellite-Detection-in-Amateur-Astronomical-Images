@@ -5,10 +5,10 @@ import glob
 from ultralytics import YOLO
 
 # path to unet model trained on ASTA dataset (yolov8-seg)
-MODEL_PATH = '../best.pt'
+MODEL_PATH = '../best_augumentation.pt'
 
-IMAGES_FOLDER = '../images_to_predict' 
-RESULTS_FOLDER = 'prediction_unet_hybrid_FINAL'
+IMAGES_FOLDER = '../images_to_predict_cut' 
+RESULTS_FOLDER = 'predict_cut/prediction_unet_hybrid'
 
 def preprocess_image(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

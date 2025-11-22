@@ -11,8 +11,8 @@ from ultralytics import YOLO
 
 MODEL_PATH = '../best_augumentation.pt'
 
-IMAGES_FOLDER = '../images_to_predict' 
-RESULTS_FOLDER = 'prediction_after_aug_training'
+IMAGES_FOLDER = '../images_to_predict_cut' 
+RESULTS_FOLDER = 'predict_cut/prediction_no_preprocessing_results'
 #
 
 def analyze_mask_with_cv(mask, original_image):
