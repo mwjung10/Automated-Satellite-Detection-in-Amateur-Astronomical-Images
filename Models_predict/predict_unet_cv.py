@@ -16,7 +16,13 @@ def preprocess_image(image):
     contrast_img = clahe.apply(gray)
 
     _, thresh_img = cv2.threshold(contrast_img, 100, 255, cv2.THRESH_BINARY)
-    preprocessed_img = cv2.cvtColor(thresh_img, cv2.COLOR_GRAY2BGR)
+    thresh_img = cv2.adaptiveThreshold(
+        contrast_img, 255,
+        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+        cv2.THRESH_BINARY,
+        11, 2
+    )
+    preprocessed_img = cv2.cvtColor(contrast_img, cv2.COLOR_GRAY2BGR)
     return preprocessed_img
 
 def analyze_mask_with_cv(mask, original_image):
