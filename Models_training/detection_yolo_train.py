@@ -12,13 +12,22 @@ def main():
     
     try:
         results = model.train(
-            data='streaks.yaml',       #
-            epochs=30,                 
+            data='combined.yaml',       
+            epochs=100,                 
             batch=16,                  
             optimizer='Adam',          
             imgsz=640,                 
             device=device,
-            name='yolov8t_streaks_baseline' 
+            name='yolov8t_streaks_baseline',
+            hsv_h=0.005,  # bc my photos are mostly dark
+            hsv_s=0.1,
+            hsv_v = 0.7, 
+            degrees = 10.0,     
+            scale = 0.5,        
+            flipud = 0.5,       
+            fliplr = 0.5,       
+            mosaic = 0.5,       
+            mixup = 0.1
         )
 
         print("\nTraining completed successfully.")
