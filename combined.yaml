@@ -1,0 +1,9 @@
+path: ./DatasetCombinedDetection
+
+train: train/images
+val: validation/images
+test: test/images
+
+
+names:
+  0: streak

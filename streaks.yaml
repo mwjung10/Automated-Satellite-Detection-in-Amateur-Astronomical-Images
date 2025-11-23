@@ -1,17 +1,9 @@
-# Plik: streaks.yaml
-
 path: ./StreaksYoloDataset
 
 train: train/images
 val: validation/images
 test: test/images
 
-# Definicja klas
-# Musisz to sprawdzić! Otwórz dowolny plik w 'train/labels'
-# Zobacz, jakie cyfry tam są (0, 1, 2...). 
-# Twoje notatki wspominają o satelitach, śmieciach i promieniach kosmicznych 
-# Załóżmy na razie, że '0' to smuga (streak).
+
 names:
   0: streak
-  # 1: cosmic_ray
-  # 2: debris
