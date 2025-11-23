@@ -13,19 +13,26 @@ def main():
     try:
         results = model.train(
             data='asta.yaml', 
-            epochs=50,      
+            epochs=200,      
             batch=8,        
             optimizer='Adam',
             imgsz=640,
             device=device,
-            name='unet_asta_baseline',
-            project='runs/segment' 
-        )
+            name='unet_asta_nano_with_flipud',
+            project='runs/segment',
+	    cache = False,
+	    flipud=0.5,
+	    mosaic=1.0,
+	    hsv_h=0.05,
+            hsv_s=0.7,
+	    hsv_v=0.4,
+	    copy_paste=0.3
+            )
 
         print("\nU-Net training completed successfully.")
         print(f"Results and model weights saved in: {results.save_dir}")
         
-        metrics = model.val(split='val')
+        metrics = model.val(split='val', data='asta.yaml')
 
         print("\n--- Segmentation Model Metrics ---")
         print(f"mAP50-95 (Mask): {metrics.seg.map:.4f}")
