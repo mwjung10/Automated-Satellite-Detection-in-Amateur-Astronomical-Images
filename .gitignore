@@ -11,6 +11,7 @@ yolo*
 ASTAdataset/
 ASTA_dataset_split/
 ASTA_Yolo_Ready/
+DatasetCombinedDetection/
 
 # Directory for verification results
 check_ASTA_split_rqesults/  
