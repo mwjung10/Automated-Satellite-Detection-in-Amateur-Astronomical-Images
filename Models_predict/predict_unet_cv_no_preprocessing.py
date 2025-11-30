@@ -5,9 +5,9 @@ import glob
 from ultralytics import YOLO
 import torch
 
-MODEL_PATH = '../best_augumentation_streaks.pt'
-IMAGES_FOLDER = '../images_to_predict'
-RESULTS_FOLDER = 'prediction_after_aug_training/no_preprocessing_results'
+MODEL_PATH = '../best_aug_combined.pt'
+IMAGES_FOLDER = '../images_to_predict_cut'
+RESULTS_FOLDER = 'prediction_images_cut/no_preprocessing_results'
 
 def analyze_mask_with_cv(mask, original_image):
     image_with_contours = original_image.copy()
