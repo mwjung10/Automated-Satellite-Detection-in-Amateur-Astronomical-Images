@@ -6,19 +6,19 @@ def main():
     print(f"Used device: {device}")
 
 
-    model = YOLO('yolov8t.pt')
+    model = YOLO('yolov8n.pt')
 
     print("Starting base training...")
     
     try:
         results = model.train(
-            data='combined.yaml',       
+            data='/net/tscratch/people/plgmjung/p_dyplomowa/Automated-Satellite-Detection-in-Amateur-Astronomical-Images/combined.yaml',       
             epochs=100,                 
             batch=16,                  
             optimizer='Adam',          
             imgsz=640,                 
             device=device,
-            name='yolov8t_streaks_baseline',
+            name='yolov8t_streaks_aug_notpretrained',
             hsv_h=0.005,  # bc my photos are mostly dark
             hsv_s=0.1,
             hsv_v = 0.7, 

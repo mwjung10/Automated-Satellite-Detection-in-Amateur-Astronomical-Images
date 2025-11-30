@@ -1,7 +1,7 @@
 path: ./DatasetCombinedDetection
 
 train: train/images
-val: validation/images
+val: val/images
 test: test/images
 
 

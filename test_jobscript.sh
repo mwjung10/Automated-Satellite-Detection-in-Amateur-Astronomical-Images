@@ -1,14 +1,14 @@
 #!/bin/bash
 #
-#SBATCH -J TreningYOLO 
+#SBATCH -J TreningRTDERT 
 #SBATCH -p plgrid-gpu-a100  
 #SBATCH --gres=gpu:1   
 #SBATCH -N 1  
 #SBATCH -n 8  
 #SBATCH --mem=32G  
-#SBATCH -t 01:00:00 
-#SBATCH --output="yolo_log_%j.out" #(%j = task ID)
-#SBATCH --error="yolo_err_%j.err" 
+#SBATCH -t 03:00:00 
+#SBATCH --output="rtdert_log_%j.out" #(%j = task ID)
+#SBATCH --error="rtdert_err_%j.err" 
 
 echo "Task started: $(date)"
 cd $SLURM_SUBMIT_DIR
@@ -19,6 +19,6 @@ conda activate PDyplomowa
 
 echo "Environment started. Starts python script..."
 
-python -u train.py
+python -u Models_training/rtdert_train.py
 
 echo "Task finished: $(date)"

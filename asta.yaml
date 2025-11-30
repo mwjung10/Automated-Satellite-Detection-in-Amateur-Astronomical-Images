@@ -1,9 +1,9 @@
 
-path: /net/tscratch/people/plgmjung/p_dyplomowa/ASTA_dataset_split 
+#path: /net/tscratch/people/plgmjung/p_dyplomowa/Automated-Satellite-Detection-in-Amateur-Astronomical-Images/ASTA_dataset_split 
 
-train: train/images
-val: val/images
-test: test/images 
+train: /net/tscratch/people/plgmjung/p_dyplomowa/Automated-Satellite-Detection-in-Amateur-Astronomical-Images/ASTA_dataset_split/train/images
+val: /net/tscratch/people/plgmjung/p_dyplomowa/Automated-Satellite-Detection-in-Amateur-Astronomical-Images/ASTA_dataset_split/val/images
+test: /net/tscratch/people/plgmjung/p_dyplomowa/Automated-Satellite-Detection-in-Amateur-Astronomical-Images/ASTA_dataset_split/test/images 
 
 names:
   0: streak
