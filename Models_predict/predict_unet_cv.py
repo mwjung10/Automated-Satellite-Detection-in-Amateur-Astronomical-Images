@@ -2,11 +2,11 @@ import cv2
 import numpy as np
 import os
 import glob
-from ultralytics import YOLO
+from ultralytics import YOLO, RTDETR
 
 MODEL_PATH = '../best_augumentation_streaks.pt'
-IMAGES_FOLDER = '../images_to_predict_cut'
-RESULTS_FOLDER = 'prediction_images_cut/preprocessing_results'
+IMAGES_FOLDER = '../images_to_predict'
+RESULTS_FOLDER = 'prediction_images/preprocessing_results'
 
 def preprocess_image(image):
     """
@@ -161,7 +161,7 @@ def main():
         print(f"  [Model] Predicting on preprocessed image (imgsz={inference_size})...")
         results = model.predict(
             preprocessed_image, 
-            conf=0.01, 
+            conf=0.25, 
             imgsz=inference_size, 
             verbose=False
         ) 

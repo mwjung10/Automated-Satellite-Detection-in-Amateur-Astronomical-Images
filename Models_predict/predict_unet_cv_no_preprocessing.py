@@ -5,9 +5,9 @@ import glob
 from ultralytics import YOLO
 import torch
 
-MODEL_PATH = '../best_aug_combined.pt'
-IMAGES_FOLDER = '../images_to_predict_cut'
-RESULTS_FOLDER = 'prediction_images_cut/no_preprocessing_results'
+MODEL_PATH = '../best_augumentation_streaks.pt'
+IMAGES_FOLDER = '../images_to_predict'
+RESULTS_FOLDER = 'prediction_images/no_preprocessing_results'
 
 def analyze_mask_with_cv(mask, original_image):
     image_with_contours = original_image.copy()
@@ -65,7 +65,7 @@ def main():
         
         results = model.predict(
             original_image, 
-            conf=0.01,        
+            conf=0.25,        
             imgsz=inference_size, 
             verbose=False
         ) 
