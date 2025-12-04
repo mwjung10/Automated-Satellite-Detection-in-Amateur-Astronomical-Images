@@ -24,3 +24,5 @@ opticalFlow_sequence/
 
 Models_predict/prediction*
 Models_predict/Houghruns
+
+crossing_images/

@@ -17,9 +17,6 @@ OVERLAP_WIDTH_RATIO = 0.2
 CONFIDENCE_THRESHOLD = 0.25
 
 def preprocess_image(image):
-    """
-    Applies CLAHE and Adaptive Thresholding.
-    """
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
     clahe = cv2.createCLAHE(clipLimit=1.0, tileGridSize=(8, 8))

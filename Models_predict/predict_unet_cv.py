@@ -5,13 +5,10 @@ import glob
 from ultralytics import YOLO, RTDETR
 
 MODEL_PATH = '../best_augumentation_streaks.pt'
-IMAGES_FOLDER = '../images_to_predict'
+IMAGES_FOLDER = '../crossing_images'
 RESULTS_FOLDER = 'prediction_images/preprocessing_results'
 
 def preprocess_image(image):
-    """
-    Applies CLAHE and Adaptive Thresholding.
-    """
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
     clahe = cv2.createCLAHE(clipLimit=1.0, tileGridSize=(8, 8))
@@ -163,7 +160,11 @@ def main():
             preprocessed_image, 
             conf=0.25, 
             imgsz=inference_size, 
-            verbose=False
+            verbose=False,
+            project=RESULTS_FOLDER,
+            name='temp_prediction',
+            exist_ok=True,
+            save=True
         ) 
         
         result = results[0]
