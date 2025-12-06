@@ -1,0 +1,9 @@
+path: ./Syntetic_Dataset_Split
+
+train: train/images
+val: val/images
+test: test/images
+
+
+names:
+  0: streak
