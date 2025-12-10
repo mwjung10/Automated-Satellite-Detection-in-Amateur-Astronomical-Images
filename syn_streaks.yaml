@@ -1,0 +1,16 @@
+
+
+train:
+  - ./StreaksYoloDataset/train/images
+  - ./Syntetic_Dataset_Split/train/images
+
+val:
+  - ./StreaksYoloDataset/validation/images
+  - ./Syntetic_Dataset_Split/val/images
+test:
+  - ./StreaksYoloDataset/test/images
+  - ./Syntetic_Dataset_Split/test/images  
+
+# Definicja klas (MUSI BYĆ IDENTYCZNA DLA OBU ZBIORÓW!)
+names:
+  0: streak
