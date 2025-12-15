@@ -21,6 +21,8 @@ split_asta_datset_check.py
 
 all_images_to_predict/
 images_to_predict_cut/
+images_to_predict_short/
+images_to_predict_trees/
 Models_predict/predict_cut/
 opticalFlow_sequence/
 

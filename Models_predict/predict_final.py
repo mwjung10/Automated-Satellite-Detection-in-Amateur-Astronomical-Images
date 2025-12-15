@@ -6,11 +6,93 @@ from ultralytics import YOLO
 
 
 MODEL_PATH = '../best_augumentation_streaks.pt'
-IMAGES_FOLDER = '../images_to_predict'
-RESULTS_FOLDER = 'prediction_results'
+IMAGES_FOLDER = '../images_to_predict_short'
+RESULTS_FOLDER = 'prediction_results_short/no_preprocessing'
 ENABLE_PREPROCESSING = True # to enable or disable preprocessing step
 CONFIDENCE_THRESHOLD = 0.25
 
+def clip_line_to_rect(vx, vy, x0, y0, w, h):
+    """
+    Calculates the intersection points of a line defined by a point (x0, y0) and direction vector (vx, vy)
+    with the rectangle defined by width w and height h (
+    """
+    if abs(vx) < 1e-9: vx = 1e-9
+    if abs(vy) < 1e-9: vy = 1e-9
+
+    # T calculations for intersections with rectangle edges
+    # Edges vertical (x=0 and x=w-1)
+    # position = start + time * direction
+    # x = x0 + t*vx, y = y0 + t*vy
+    
+    t_left = (0 - x0) / vx
+    t_right = (w - 1 - x0) / vx
+    
+    # Edges horizontal (y=0 and y=h-1)
+    t_top = (0 - y0) / vy
+    t_bottom = (h - 1 - y0) / vy
+
+    intersections = []
+    
+    # Check each of the 4 potential intersections
+    for t in [t_left, t_right, t_top, t_bottom]:
+        x = x0 + t * vx
+        y = y0 + t * vy
+        
+        if -1.0 <= x <= w and -1.0 <= y <= h:
+            intersections.append((int(x), int(y)))
+
+    # Remove duplicates and sort (to have points in some order)
+    intersections = sorted(list(set(intersections)))
+    
+    # We should find 2 points. If the line touches only a corner, there may be 1.
+    if len(intersections) >= 2:
+        # We take the two most distant points (in case more were found due to rounding)
+        return intersections[0], intersections[-1]
+    
+    return None
+
+def get_streaks_endpoints_and_angle(box, image):
+    x1, y1, x2, y2 = map(int, box)
+    
+    x1, y1 = max(0, x1), max(0, y1)
+    x2, y2 = min(image.shape[1], x2), min(image.shape[0], y2)
+
+    roi = image[y1:y2, x1:x2] # region of interest
+    
+    if roi.size == 0:
+        return None
+
+    gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+    _, binary = cv2.threshold(gray_roi, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    points = cv2.findNonZero(binary)
+    
+    if points is not None:
+        # Fit line to points
+        # vx, vy - direction vector
+        # x, y - a point on the line
+        [vx, vy, x, y] = cv2.fitLine(points, cv2.DIST_L2, 0, 0.01, 0.01)
+        vx = vx.item()
+        vy = vy.item()
+        x = x.item()
+        y = y.item()
+        
+        angle = np.degrees(np.arctan2(vy, vx))
+        if angle < 0:
+            angle += 180
+
+        rows, cols = gray_roi.shape
+        
+        endpoints_local = clip_line_to_rect(vx, vy, x, y, cols, rows)
+        
+        if endpoints_local:
+            p1_local, p2_local = endpoints_local
+            
+            p1_global = (x1 + p1_local[0], y1 + p1_local[1])
+            p2_global = (x1 + p2_local[0], y1 + p2_local[1])
+
+            return p1_global, p2_global, angle
+        
+    return None
 
 def preprocess_image(image):
     try:
@@ -118,6 +200,10 @@ def main():
                 conf = box.conf[0].item()
                 label = result.names[int(box.cls[0].item())]
                 print(f"    Object {i+1} ({label}): Conf={conf:.2f}, Box={coords.tolist()}")
+                endpoints = get_streaks_endpoints_and_angle(coords, original_image)
+                if endpoints is not None:
+                    p1, p2, angle = endpoints
+                    print(f" Endpoints: {p1}, {p2}, Angle: {angle} degrees")
             
             mask_filename = f"{filename_no_ext}_MASK_FROM_BOX.png"
             cv2.imwrite(os.path.join(RESULTS_FOLDER, mask_filename), mask_from_boxes)
