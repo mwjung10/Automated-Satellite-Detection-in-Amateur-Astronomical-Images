@@ -5,9 +5,9 @@ import os
 import glob
 from ultralytics import YOLO, RTDETR
 
-MODEL_PATH = '../best_synthetic_aug.pt'
-IMAGES_FOLDER = '../images_to_predict_cut'
-RESULTS_FOLDER = 'prediction_images_cut/preprocessing_results'
+MODEL_PATH = '../best_synthetic_aug_v2.pt'
+IMAGES_FOLDER = '../images_to_predict_trees'
+RESULTS_FOLDER = 'prediction_images/preprocessing_results'
 
 def preprocess_image(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

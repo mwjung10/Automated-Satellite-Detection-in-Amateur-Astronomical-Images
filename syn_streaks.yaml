@@ -1,5 +1,3 @@
-
-
 train:
   - ./StreaksYoloDataset/train/images
   - ./Syntetic_Dataset_Split/train/images
