@@ -1,3 +1,4 @@
+from matplotlib import image
 import cv2
 import numpy as np
 import os
@@ -5,8 +6,8 @@ import glob
 from ultralytics import YOLO, RTDETR
 
 MODEL_PATH = '../best_synthetic_aug.pt'
-IMAGES_FOLDER = '../images_to_predict_trees'
-RESULTS_FOLDER = 'prediction_images_trees/preprocessing_results'
+IMAGES_FOLDER = '../images_to_predict_cut'
+RESULTS_FOLDER = 'prediction_images_cut/preprocessing_results'
 
 def preprocess_image(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -24,77 +25,6 @@ def preprocess_image(image):
     
     preprocessed_img = cv2.cvtColor(blurred, cv2.COLOR_GRAY2BGR)
     return preprocessed_img
-#----------------------------------------------------------------------------------------------------
-    # not so good!!
-    # gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-    # kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (25, 25))
-    
-    # tophat = cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, kernel)
-    
-    # _, binary = cv2.threshold(tophat, 15, 255, cv2.THRESH_BINARY)
-    
-    # return cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
-#----------------------------------------------------------------------------------------------------
-    # not so good as well !!
-    # lab = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
-    # l, a, b = cv2.split(lab)
-
-    # clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
-    # cl = clahe.apply(l)
-
-    # limg = cv2.merge((cl, a, b))
-    # enhanced_img = cv2.cvtColor(limg, cv2.COLOR_LAB2BGR)
-
-    # gray = cv2.cvtColor(enhanced_img, cv2.COLOR_BGR2GRAY)
-    # thresh_img = cv2.adaptiveThreshold(
-    #     gray, 255,
-    #     cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-    #     cv2.THRESH_BINARY,
-    #     19, 3 
-    # )
-
-    # preprocessed_img = cv2.cvtColor(thresh_img, cv2.COLOR_GRAY2BGR)
-    # return preprocessed_img
-#----------------------------------------------------------------------------------------------------
-    # not so good !!
-    # gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    # #edges = cv2.Canny(gray_image, 100, 200)
-    # normalized_image = cv2.normalize(gray_image, None, 0, 255, cv2.NORM_MINMAX)
-    # blurred_image = cv2.GaussianBlur(normalized_image, (3, 3), 0)
-    # #blurred_image = cv2.medianBlur(normalized_image, 5)
-    # _, binary_img = cv2.threshold(blurred_image, 127, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    # preprocessed_img = cv2.cvtColor(binary_img, cv2.COLOR_GRAY2BGR)
-    # return preprocessed_img
-#----------------------------------------------------------------------------------------------------
-    # gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    # edges = cv2.Canny(gray_image, 100, 200)
-    # contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    # image_2 = image.copy()
-    # cv2.drawContours(image_2, contours, -1, (0, 255, 0), 2)
-    # return image_2
-#----------------------------------------------------------------------------------------------------
-    # gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    
-    # clahe = cv2.createCLAHE(clipLimit=1.5, tileGridSize=(8, 8))
-    # enhanced = clahe.apply(gray_image)
-
-    # blurred = cv2.GaussianBlur(enhanced, (5, 5), 0)
-    # edges = cv2.Canny(blurred, 50, 200)
-    # contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    
-    # # (OOptional)
-    # # valid_contours = []
-    # # for cnt in contours:
-    # #     if cv2.arcLength(cnt, True) > 50: 
-    # #         valid_contours.append(cnt)
-
-    # image_2 = image.copy()
-    # cv2.drawContours(image_2, contours, -1, (0, 255, 0), 2)
-    
-    # return image_2
-
-
 
 
 def analyze_mask_with_cv(mask, original_image):
