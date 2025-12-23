@@ -3,10 +3,9 @@ import numpy as np
 from ultralytics import YOLO
 
 MODEL_PATH = 'runs/detect/yolov8n_streaks_baseline/weights/best.pt' 
-TEST_IMAGE = 'StreaksYoloDataset/test/images/img_00012.jpg' # Upewnij się, że ten plik istnieje
+TEST_IMAGE = 'StreaksYoloDataset/test/images/img_00012.jpg' 
 
 def get_streak_endpoints(image_path, model_path):
-    # 1. Załaduj model i obraz
     model = YOLO(model_path)
     img = cv2.imread(image_path)
     
@@ -16,7 +15,7 @@ def get_streak_endpoints(image_path, model_path):
 
     original_h, original_w = img.shape[:2]
     
-    # 2. Uruchom predykcję YOLO
+    # 2.  predykcję YOLO
     results = model(image_path)
     
     print(f"\n--- Analiza obrazu: {image_path} ---")

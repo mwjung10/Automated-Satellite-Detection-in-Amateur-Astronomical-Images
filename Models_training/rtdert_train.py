@@ -11,13 +11,24 @@ def main():
     
     try:
         results = model.train(
-            data='streaks.yaml',       
-            epochs=50,                 
-            batch=8,  
-            optimizer='Adam',                
-            imgsz=640,
+            data='/net/tscratch/people/plgmjung/p_dyplomowa/Automated-Satellite-Detection-in-Amateur-Astronomical-Images/synthetic.yaml',       
+            epochs=100,                 
+            batch=16,                  
+            optimizer='AdamW', 
+            lr0=0.0001,
+            cos_lr = True,         
+            imgsz=640,                 
             device=device,
-            name='rtdetr_streaks_test1'
+            name='rtdetr_l_synthetic_augmented',
+            hsv_h=0.005,  # bc my photos are mostly dark
+            hsv_s=0.1,
+            hsv_v = 0.7, 
+            degrees = 0.0,     
+            scale = 0.5,        
+            flipud = 0.5,       
+            fliplr = 0.5,       
+            mosaic = 0.5,       
+            mixup = 0.1
         )
         
         print("\nTraining completed.")

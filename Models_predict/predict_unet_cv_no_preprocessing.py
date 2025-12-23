@@ -6,7 +6,7 @@ from ultralytics import YOLO
 import torch
 
 
-MODEL_PATH = '../best_synthetic_aug_v2.pt'
+MODEL_PATH = '../best_syn_streaks_aug_v2.pt'
 IMAGES_FOLDER = '../images_to_predict_trees'
 RESULTS_FOLDER = 'prediction_images_trees/no_preprocessing_results'
 
