@@ -25,8 +25,12 @@ images_to_predict_short/
 images_to_predict_trees/
 Models_predict/predict_cut/
 opticalFlow_sequence/
+images_to_test/
 
 Models_predict/prediction*
 Models_predict/Houghruns
 
 crossing_images/
+
+Dataset_A_Baseline*
+Dataset_B_Baseline*

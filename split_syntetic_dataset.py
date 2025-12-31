@@ -4,8 +4,8 @@ import random
 import shutil
 from tqdm import tqdm
 
-SOURCE_FOLDER = "Amateur_Synthetic_Dataset_v2"
-DEST_FOLDER = "Syntetic_Dataset_Split_v2"
+SOURCE_FOLDER = "Dataset_B_Baseline"
+DEST_FOLDER = "Dataset_B_Baseline_Split"
 TRAIN_RATIO = 0.8
 VAL_RATIO = 0.1
 TEST_RATIO = 0.1

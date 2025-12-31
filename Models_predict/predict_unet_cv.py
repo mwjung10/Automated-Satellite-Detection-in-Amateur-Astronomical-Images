@@ -5,8 +5,8 @@ import os
 import glob
 from ultralytics import YOLO, RTDETR
 
-MODEL_PATH = '../best_syn_streaks_aug_v2.pt'
-IMAGES_FOLDER = '../images_to_predict'
+MODEL_PATH = '../best_syn_aug_rtdert.pt'
+IMAGES_FOLDER = '../images_to_predict/'
 RESULTS_FOLDER = 'prediction_images/preprocessing_results'
 
 def preprocess_image(image):

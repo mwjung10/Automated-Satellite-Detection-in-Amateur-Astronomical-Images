@@ -7,8 +7,8 @@ import torch
 
 
 MODEL_PATH = '../best_syn_streaks_aug_v2.pt'
-IMAGES_FOLDER = '../images_to_predict_trees'
-RESULTS_FOLDER = 'prediction_images_trees/no_preprocessing_results'
+IMAGES_FOLDER = '../images_to_test'
+RESULTS_FOLDER = 'prediction_images_test/no_preprocessing_results'
 
 def analyze_mask_with_cv(mask, original_image):
     image_with_contours = original_image.copy()

@@ -6,9 +6,9 @@ from ultralytics import YOLO
 from sahi import AutoDetectionModel
 from sahi.predict import get_sliced_prediction
 
-MODEL_PATH = '../best_augumentation_streaks.pt'
-IMAGES_FOLDER = '../images_to_predict_short'
-RESULTS_FOLDER = 'prediction_images_short/sahi'
+MODEL_PATH = '../best_syn_aug_rtdert.pt'
+IMAGES_FOLDER = '../images_to_predict/'
+RESULTS_FOLDER = 'prediction_images/preprocessing_results'
 
 SLICE_HEIGHT = 640
 SLICE_WIDTH = 640

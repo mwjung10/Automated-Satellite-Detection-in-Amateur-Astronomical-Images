@@ -1,0 +1,52 @@
+# ==========================================
+# Configuration: DATASET A (BASELINE)
+# ==========================================
+OUTPUT_DIR = "Dataset_A_Baseline"
+IMG_W = 640
+IMG_H = 640
+NUM_IMAGES = 10000
+
+TRACKING_ERROR_CHANCE = 0.0
+MAX_TRACKING_BLUR = 0
+PSF_KERNEL_SIZE = 1          
+
+LIGHT_POLLUTION_MIN = 0
+LIGHT_POLLUTION_MAX = 0
+SKY_NOISE_BASE = 0            
+SKY_NOISE_VAR = 0
+ENABLE_OBSTACLES = False      
+OBSTACLE_CHANCE = 0.0
+
+STAR_COUNT_MIN = 100
+STAR_COUNT_MAX = 600
+STAR_BRIGHTNESS_MIN = 0.5
+STAR_BRIGHTNESS_MAX = 1.0
+SAT_COUNT_MIN = 0
+SAT_COUNT_MAX = 2
+SAT_BRIGHTNESS_MIN = 100
+SAT_BRIGHTNESS_MAX = 255
+SAT_THICKNESS = 1
+SAT_DEFOCUS_KERNEL_SIZE = 0
+
+#### Konfiguracja dla Dataset B (No Obstacles)
+
+# ==========================================
+# Configuration : DATASET B (NO OBSTACLES)
+# ==========================================
+OUTPUT_DIR = "Dataset_B_NoObstacles"
+IMG_W = 640
+IMG_H = 640
+NUM_IMAGES = 10000
+
+TRACKING_ERROR_CHANCE = 0.0
+PSF_KERNEL_SIZE = 1          
+
+LIGHT_POLLUTION_MIN = 20
+LIGHT_POLLUTION_MAX = 80
+SKY_NOISE_BASE = 30
+SKY_NOISE_VAR = 20
+
+ENABLE_OBSTACLES = False      
+OBSTACLE_CHANCE = 0.0
+
+

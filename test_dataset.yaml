@@ -1,0 +1,9 @@
+
+path: C:\STUDIA\PracaDyplomowa\Automated-Satellite-Detection-in-Amateur-Astronomical-Images\images_to_test
+
+train: images
+val: images
+test: images
+
+names:
+  0: satellite
