@@ -7,8 +7,8 @@ import torch
 
 
 MODEL_PATH = '../best_syn_streaks_aug_v2.pt'
-IMAGES_FOLDER = '../images_to_test'
-RESULTS_FOLDER = 'prediction_images_test/no_preprocessing_results'
+IMAGES_FOLDER = 'C:\STUDIA\PracaDyplomowa\Automated-Satellite-Detection-in-Amateur-Astronomical-Images\images_to_test\images'
+RESULTS_FOLDER = 'prediction_images_test/augmented_streaks/'
 
 def analyze_mask_with_cv(mask, original_image):
     image_with_contours = original_image.copy()
@@ -51,7 +51,7 @@ def main():
 
     for img_path in image_files:
         print(f"\n--- Processing: {os.path.basename(img_path)} ---")
-        
+
         original_image = cv2.imread(img_path)
         if original_image is None: 
             print("Skipped: Cannot load image.")
@@ -68,7 +68,9 @@ def main():
             original_image, 
             conf=0.25,        
             imgsz=inference_size, 
-            verbose=False
+            verbose=False,
+            save=True,
+            project=RESULTS_FOLDER
         ) 
         
         result = results[0]

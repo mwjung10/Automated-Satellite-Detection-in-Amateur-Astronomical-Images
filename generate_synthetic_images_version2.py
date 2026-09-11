@@ -53,7 +53,6 @@ def add_clouds(img):
     """
     h, w = img.shape
     
-    # 30% chance to add clouds
     if random.random() > 0.5:
         return img
 

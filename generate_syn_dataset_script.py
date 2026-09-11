@@ -7,63 +7,37 @@ from tqdm import tqdm
 # USER CONFIGURATION
 # ==========================================
 
-# OUTPUT_DIR = "Amateur_Configurable_Dataset"
-# IMG_W = 640
-# IMG_H = 640
-# NUM_IMAGES = 10
-
-# # Simulation of telescope tracking errors
-# TRACKING_ERROR_CHANCE = 0.5 
-# MAX_TRACKING_BLUR = 5       
-# PSF_KERNEL_SIZE = 5
-
-# STAR_COUNT_MIN = 100
-# STAR_COUNT_MAX = 600
-# STAR_BRIGHTNESS_MIN = 0.3
-# STAR_BRIGHTNESS_MAX = 1.0
-
-# SAT_COUNT_MIN = 0
-# SAT_COUNT_MAX = 2
-# SAT_BRIGHTNESS_MIN = 50
-# SAT_BRIGHTNESS_MAX = 180
-# SAT_THICKNESS = 1
-# SAT_DEFOCUS_KERNEL_SIZE = 5
-
-
-# LIGHT_POLLUTION_MIN = 20
-# LIGHT_POLLUTION_MAX = 80
-# SKY_NOISE_BASE = 30
-# SKY_NOISE_VAR = 20
-# ENABLE_OBSTACLES = True   
-# OBSTACLE_CHANCE = 0.5      
-
-# ==========================================
-OUTPUT_DIR = "Dataset_B_Baseline"
+OUTPUT_DIR = "Amateur_Configurable_Dataset"
 IMG_W = 640
 IMG_H = 640
-NUM_IMAGES = 10000
+NUM_IMAGES = 10
 
-TRACKING_ERROR_CHANCE = 0.0
-MAX_TRACKING_BLUR = 0
-PSF_KERNEL_SIZE = 1          
-
-LIGHT_POLLUTION_MIN = 20
-LIGHT_POLLUTION_MAX = 80
-SKY_NOISE_BASE = 30           
-SKY_NOISE_VAR = 20
-ENABLE_OBSTACLES = False      
-OBSTACLE_CHANCE = 0.0
+# Simulation of telescope tracking errors
+TRACKING_ERROR_CHANCE = 0.5 
+MAX_TRACKING_BLUR = 5       
+PSF_KERNEL_SIZE = 5
 
 STAR_COUNT_MIN = 100
 STAR_COUNT_MAX = 600
-STAR_BRIGHTNESS_MIN = 0.5
+STAR_BRIGHTNESS_MIN = 0.3
 STAR_BRIGHTNESS_MAX = 1.0
+
 SAT_COUNT_MIN = 0
 SAT_COUNT_MAX = 2
-SAT_BRIGHTNESS_MIN = 100
-SAT_BRIGHTNESS_MAX = 255
+SAT_BRIGHTNESS_MIN = 50
+SAT_BRIGHTNESS_MAX = 180
 SAT_THICKNESS = 1
-SAT_DEFOCUS_KERNEL_SIZE = 0
+SAT_DEFOCUS_KERNEL_SIZE = 5
+
+
+LIGHT_POLLUTION_MIN = 20
+LIGHT_POLLUTION_MAX = 80
+SKY_NOISE_BASE = 30
+SKY_NOISE_VAR = 20
+ENABLE_OBSTACLES = True   
+OBSTACLE_CHANCE = 0.5      
+
+# ==========================================
 
 
 os.makedirs(f"{OUTPUT_DIR}/images", exist_ok=True)
@@ -72,7 +46,6 @@ os.makedirs(f"{OUTPUT_DIR}/labels", exist_ok=True)
 class OpticsSimulator:
     """
     Handles physics-based rendering: PSF, Tracking Errors, Sensor Noise.
-    Refers to 'Step 2' and 'Step 4' in Implementation_Roadmap.md
     """
     @staticmethod
     def apply_motion_blur(image, length, angle_deg):
@@ -99,7 +72,6 @@ class OpticsSimulator:
     def add_poisson_noise(img):
         """
         Simulates Photon Shot Noise (Poisson distribution).
-        Refers to Step 4 in Roadmap.
         """
         img_float = img.astype(float)
         

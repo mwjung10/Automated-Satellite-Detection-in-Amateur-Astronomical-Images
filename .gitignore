@@ -34,3 +34,7 @@ crossing_images/
 
 Dataset_A_Baseline*
 Dataset_B_Baseline*
+
+prediction_images_test/*
+
+Debug_Dataset/
