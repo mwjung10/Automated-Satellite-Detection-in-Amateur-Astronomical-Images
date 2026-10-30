@@ -43,7 +43,7 @@ These scripts generate artificial night-sky images with stars and satellite trai
   Another synthetic image generator with similar purpose.
 
 - [generate_synthetic_images_version2.py](generate_synthetic_images_version2.py)  
-  Improved version of the synthetic generator.
+  Faster and more simple generator/
 
 - [generate_syn_dataset_each_layer_explained.py](generate_syn_dataset_each_layer_explained.py)  
   Explains how the synthetic dataset is built layer by layer.
